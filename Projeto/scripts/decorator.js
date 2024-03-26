@@ -1,11 +1,9 @@
-// Interface que define o contrato para objetos que podem ser decorados
 class Component {
     render() {
         throw new Error('render() method must be implemented');
     }
 }
 
-// Implementação básica do componente
 class IframeComponent extends Component {
     constructor(src) {
         super();
@@ -17,7 +15,6 @@ class IframeComponent extends Component {
     }
 }
 
-// Decorator que adiciona um estilo ao componente de iframe
 class StyledIframeDecorator extends Component {
     constructor(component, style) {
         super();
@@ -30,7 +27,6 @@ class StyledIframeDecorator extends Component {
     }
 }
 
-// Componente que representa a navbar
 class NavbarComponent extends Component {
     render() {
         return `
@@ -53,10 +49,8 @@ class NavbarComponent extends Component {
     }
 }
 
-// Criar e renderizar os componentes
 const iframeComponent = new IframeComponent("https://lookerstudio.google.com/embed/reporting/e99ed38c-902a-4b05-810c-2199dd4e07ca/page/No7tD");
 const navbarComponent = new NavbarComponent();
 const styledIframeComponent = new StyledIframeDecorator(iframeComponent, "height: calc(100vh - 56px);"); // Subtrai a altura da navbar
 
-// Adiciona a navbar ao corpo do documento
 document.body.innerHTML = navbarComponent.render() + styledIframeComponent.render();
