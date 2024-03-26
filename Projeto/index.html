@@ -1,24 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Médias de alunos por turmas</title>
-<style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-    }
-    iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-</style>
-</head>
-<body>
-    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/e99ed38c-902a-4b05-810c-2199dd4e07ca/page/No7tD" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-</body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Médias de alunos por turmas</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .navbar-toggler-icon {
+            color: white !important;
+        }
+    </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="index.html">Alunos por turma</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="btn btn-primary" href="mediaalunos.html">Verificar dados</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container sm-5">
+            <div class="home-container text-center">
+                <h1 class="text-white">Home</h1>
+                <p>
+                    Este sistema é fruto do trabalho árduo e dedicado de alunos da Universidade Federal de Sergipe, que se uniram com o objetivo de facilitar o acesso aos dados governamentais. Anteriormente, a visualização das médias de alunos por turma era uma tarefa desafiadora devido à forma como os dados eram disponibilizados pelo governo. No entanto, com a criação deste sistema, essa dificuldade se torna coisa do passado.
+                    Agora, os usuários têm a comodidade de acessar e explorar as médias de alunos por turma de maneira simples e intuitiva. Essa ferramenta não apenas simplifica o processo de visualização de dados, mas também abre novas possibilidades de análise e compreensão do desempenho escolar em diferentes escolas e turmas do Nordeste.
+                    Este projeto não é apenas sobre tecnologia, mas também sobre empoderamento e acesso à informação. Ao disponibilizar esses dados de maneira acessível e transparente, estamos promovendo a democratização do conhecimento e incentivando a participação ativa na educação.
+                    Estamos comprometidos em continuar aprimorando este sistema, adicionando novos recursos e aperfeiçoando a experiência do usuário. Nosso objetivo é fornecer uma plataforma abrangente e confiável para todos aqueles interessados em acompanhar e entender as médias de alunos por turma na região do Nordeste.
+                    Agradecemos pelo apoio e interesse em nosso projeto. Esperamos que esta ferramenta seja útil e impactante, contribuindo para uma educação mais acessível e inclusiva para todos.
+                </p>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>
