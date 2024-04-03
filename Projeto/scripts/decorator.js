@@ -41,6 +41,9 @@ class NavbarComponent extends Component {
                         <li class="nav-item">
                             <a class="btn btn-primary" href="mediaalunos.html">Verificar dados</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary" href="download.html">Download</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -48,6 +51,7 @@ class NavbarComponent extends Component {
         `;
     }
 }
+
 
 const iframeComponent = new IframeComponent("https://lookerstudio.google.com/embed/reporting/e99ed38c-902a-4b05-810c-2199dd4e07ca/page/No7tD");
 const navbarComponent = new NavbarComponent();

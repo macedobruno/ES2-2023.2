@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médias de alunos por turmas</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .navbar-toggler-icon {
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="index.html">Alunos por turma</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-primary"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="mediaalunos.html">Verificar dados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="download.html">Download</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container sm-5">
+        <div class="home-container text-center">
+            <h1>Baixe os nossos dados.</h1>
+            <p>Selecione o formato do arquivo:</p>
+            <button onclick="downloadFile('csv')">CSV</button>
+            <button onclick="downloadFile('xlsx')">XLSX</button>
+            <button onclick="downloadFile('pdf')">PDF</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Classe abstrata para a Factory
+        class FileFactory {
+            constructor(data) {
+                this.data = data;
+            }
+            generate() {
+                throw new Error("Método generate() deve ser implementado pelas subclasses.");
+            }
+
+            // Método estático para criar a fábrica com base no formato
+            static createFactory(format, data, filename) {
+                switch (format.toLowerCase()) {
+                    case 'csv':
+                        return new CSVFactory(data);
+                    case 'xlsx':
+                        return new XLSXFactory(data);
+                    case 'pdf':
+                        return new PDFFactory(data);
+                    default:
+                        throw new Error("Formato inválido.");
+                }
+            }
+        }
+
+        // Subclasse para geração de arquivos CSV
+        class CSVFactory extends FileFactory {
+            generate() {
+                downloadBlob(data, filename);
+
+            }
+        }
+
+        // Subclasse para geração de arquivos XLSX
+        class XLSXFactory extends FileFactory {
+            generate() {
+                downloadBlob(data, filename);
+            }
+        }
+
+        // Subclasse para geração de arquivos PDF
+        class PDFFactory extends FileFactory {
+            generate() {
+                downloadBlob(data, filename);
+            }
+        }
+        
+        function downloadBlob(blob, filename) {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Função chamada ao clicar nos botões do modal
+        async function downloadFile(format) {
+            // Carregar dados da planilha do Google Sheets 
+            const response = await fetch('https://script.google.com/macros/s/AKfycbwsEMFtTJCeLs_pcsmlXAq8_y6vXRwS6Yyu89HqJtz8i0H8BHr_fjKj-Y6VBwO5b8XS/exec?format=' + format);
+            mode: 'no-cors' // Disables CORS
+            const data = await response.blob();
+            const filename = 'data.' + format;
+
+            const factory = FileFactory.createFactory(format, data, filename);
+            factory.generate();
+        }
+    </script>
+</body>
+</html>
