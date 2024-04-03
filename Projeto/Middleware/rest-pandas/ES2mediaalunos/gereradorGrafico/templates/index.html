@@ -35,7 +35,7 @@
                     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
                     // procura <main-selection> com "Unidade Geográfica"
-                    const mainSelectionDiv = iframeDoc.querySelector('div:contains("Unidade Geográfica")');
+                    const mainSelection = iframeDoc.querySelector('div:contains("Unidade Geográfica")');
             
                     // clica no <main-selection>
                     mainSelection.click();
@@ -44,7 +44,7 @@
                     const RegiaoDiv = mainSelection.querySelector('div[aria-label="'+estado+'"]');
                 
                     // encontra o span com title="somente" dentro da div
-                    const somenteSpan = RegiaoDivDiv.querySelector('span[title="somente"]');
+                    const somenteSpan = RegiaoDiv.querySelector('span[title="somente"]');
                 
                     // clica no span
                     somenteSpan.click();
