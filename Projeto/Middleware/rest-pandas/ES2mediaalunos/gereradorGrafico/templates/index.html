@@ -1,0 +1,60 @@
+{% load middleware %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<title>Média de Alunos por Turma</title>-->
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow: hidden;
+            }
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+        </style>
+        <script type="text/javascript">
+            function setarRegiao() {
+
+                // recebe a região baseado no IP do usuário
+                var estado = "{{ get_tracker_location }}";
+
+                const estadosNordeste = ['Alagoas', 'Bahia', 'Ceará', 'Maranhão', 'Paraíba', 'Pernambuco', 'Piauí', 'Rio Grande do Norte', 'Sergipe'];
+
+                //caso esteja dentre os estados do nordeste, faz o click automático
+                if (estadosNordeste.includes(estado)){
+                    
+                    // procura o iframe com o id do looker
+                    const iframe = document.getElementById('lookerIframe123');
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                    // procura <main-selection> com "Unidade Geográfica"
+                    const mainSelectionDiv = iframeDoc.querySelector('div:contains("Unidade Geográfica")');
+            
+                    // clica no <main-selection>
+                    mainSelection.click();
+
+                    // encontra a div com aria-label="Sergipe" dentro <main-selection>
+                    const RegiaoDiv = mainSelection.querySelector('div[aria-label="'+estado+'"]');
+                
+                    // encontra o span com title="somente" dentro da div
+                    const somenteSpan = RegiaoDivDiv.querySelector('span[title="somente"]');
+                
+                    // clica no span
+                    somenteSpan.click();
+                }
+            };
+        </script>
+    </head>
+    <body>
+        
+        <iframe name='lookerIframe123' onload="setarRegiao()" width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/e99ed38c-902a-4b05-810c-2199dd4e07ca/page/No7tD" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+
+    </body>
+</html>
